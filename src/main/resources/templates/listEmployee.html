@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="employeeContent">
+    <h1>Employee List</h1>
+    <div>
+        <form method="get" th:action="@{/employees/}">
+            <input type="text" name="textSearch" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>DepartmentName</th>
+            <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.departmentName}"></td>
+            <td th:text="${employee.roles}"></td>
+            <td><a th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a></td>
+            <td><a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a></td>
+        </tr>
+    </table>
+    <!--<div th:if="${employees.totalPages > 1}">-->
+    <!--    <div>-->
+    <!--        <span>Page:</span>-->
+    <!--        <span th:each="page : ${#numbers.sequence(0, employees.totalPages - 1)}">-->
+    <!--                <a th:href="@{/employee/}(page=${page})" th:text="${page} + 1"></a>-->
+    <!--            </span>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <div>
+        <a th:href="@{/employees/create}">Add New Employee</a>
+    </div>
+</div>
+</body>
+</html>
