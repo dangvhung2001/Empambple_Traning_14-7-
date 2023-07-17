@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Create Employee</h1>
-<form method="post" th:object="${employee}" th:action="@{/employees/create}">
+<form method="post" th:object="${employee}" th:action="@{/employees/add}">
     <label>Name: <input type="text" th:field="*{name}" /></label><br/>
     <label>Email: <input type="email" th:field="*{email}" /></label><br/>
     <label>Department:</label>

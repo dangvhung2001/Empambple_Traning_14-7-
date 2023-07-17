@@ -5,8 +5,6 @@ import com.example.thymleaf_trainingday5.service.DepartmentService;
 import com.example.thymleaf_trainingday5.service.dto.DepartmentDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +24,12 @@ public class DepartmentController {
     public String findAll(Model model, Pageable pageable) {
         Page<DepartmentDTO> departments = departmentService.findAll(pageable);
         model.addAttribute("departments", departments);
-        return "list";
+        return "department/detail";
     }
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("department", new DepartmentDTO());
-        return "createDepartment";
+        return "department/add";
     }
     @PostMapping("/createDepartment")
     public String createDepartment(@ModelAttribute DepartmentDTO departmentDTO) {
@@ -42,7 +40,7 @@ public class DepartmentController {
     public String showEditForm(@PathVariable Long id, Model model) {
         DepartmentDTO department = departmentService.findOne(id).get();
         model.addAttribute("department", department);
-        return "editDepartment";
+        return "department/edit";
     }
 
     @PostMapping("/edit/{id}")

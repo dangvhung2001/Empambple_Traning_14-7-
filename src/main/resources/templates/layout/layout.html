@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="layout">
+  <h1>Welcome to our website!</h1>
+
+  <section id="departmentContent">
+    <div th:insert="listDepartment.html :: departmentListContent"></div>
+  </section>
+  <section id="employeeContent"></section>
+</div>
+</body>
+</html>

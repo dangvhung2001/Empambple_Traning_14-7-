@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="navba">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        function showDepartments() {
+            $.ajax({
+                url: "/departments/",
+                method: "GET",
+                success: function(data) {
+                    $("#departmentContent").html(data);
+                },
+                error: function() {
+                    alert("Error loading departments.");
+                }
+            });
+        }
+
+        function showEmployee() {
+            $.ajax({
+                url: "/employees/",
+                method: "GET",
+                success: function(data) {
+                    $("#employeeContent").html(data);
+                },
+                error: function() {
+                    alert("Error loading departments.");
+                }
+            });
+        }
+    </script>
+    <div>
+        <img src="" alt="Logo">
+    </div>
+    <div class="button-container">
+        <a>
+            <button onclick="showDepartments()">Department</button>
+        </a>
+        <button onclick="showEmployee()">Employee</button>
+    </div>
+    <div class="search-bar"  method="get">
+        <input  type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+    </div>
+</header>
+</body>
+</html>

@@ -5,9 +5,9 @@
     <title>User List</title>
 </head>
 <body>
-<section th:fragment="departmentListContent">
-<h1>User List</h1>
-<table>
+<section th:fragment="departmentListContent()">
+<h1>Department List</h1>
+<table style="border: solid black">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -26,7 +26,7 @@
 
     </tr>
 </table>
-</section>
 <a th:href="@{/departments/create}">Create New Department</a>
+</section>
 </body>
 </html>

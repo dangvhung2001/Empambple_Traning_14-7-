@@ -8,12 +8,12 @@
 <div th:fragment="employeeContent">
     <h1>Employee List</h1>
     <div>
-        <form method="get" th:action="@{/employees/}">
+        <form method="get" th:action="@{/employees/show}">
             <input type="text" name="textSearch" placeholder="Search...">
             <button type="submit">Search</button>
         </form>
     </div>
-    <table>
+    <table style="border: solid black">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -33,16 +33,9 @@
             <td><a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a></td>
         </tr>
     </table>
-    <!--<div th:if="${employees.totalPages > 1}">-->
-    <!--    <div>-->
-    <!--        <span>Page:</span>-->
-    <!--        <span th:each="page : ${#numbers.sequence(0, employees.totalPages - 1)}">-->
-    <!--                <a th:href="@{/employee/}(page=${page})" th:text="${page} + 1"></a>-->
-    <!--            </span>-->
-    <!--    </div>-->
-    <!--</div>-->
+
     <div>
-        <a th:href="@{/employees/create}">Add New Employee</a>
+        <a th:href="@{/employees/add}">Add New Employee</a>
     </div>
 </div>
 </body>
