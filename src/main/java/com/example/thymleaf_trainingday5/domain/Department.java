@@ -1,6 +1,8 @@
 package com.example.thymleaf_trainingday5.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -15,9 +17,11 @@ public class Department implements Serializable {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "The name required")
     private String name;
 
     @Column(name = "description")
+    @NotEmpty(message = "The description required")
     private String description;
 
     public Long getId() {

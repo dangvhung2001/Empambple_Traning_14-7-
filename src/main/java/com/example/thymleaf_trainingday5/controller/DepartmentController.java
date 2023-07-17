@@ -7,7 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/departments")
@@ -24,7 +28,7 @@ public class DepartmentController {
     public String findAll(Model model, Pageable pageable) {
         Page<DepartmentDTO> departments = departmentService.findAll(pageable);
         model.addAttribute("departments", departments);
-        return "department/detail";
+        return "department/index";
     }
     @GetMapping("/create")
     public String showCreateForm(Model model) {
@@ -32,7 +36,10 @@ public class DepartmentController {
         return "department/add";
     }
     @PostMapping("/createDepartment")
-    public String createDepartment(@ModelAttribute DepartmentDTO departmentDTO) {
+    public String createDepartment(@ModelAttribute @Valid DepartmentDTO departmentDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "department/add";
+        }
         departmentService.save(departmentDTO);
         return "redirect:/departments/";
     }

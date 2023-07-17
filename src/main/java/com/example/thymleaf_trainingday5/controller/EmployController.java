@@ -7,8 +7,10 @@ import com.example.thymleaf_trainingday5.service.dto.EmployeeDTO;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -30,14 +32,14 @@ public class EmployController {
     public String searchEmployees(@RequestParam(required = false) String textSearch, Pageable pageable, Model model) {
         Page<EmployeeDTO> employees = employeeService.findAll(textSearch, pageable);
         model.addAttribute("employees", employees);
-        return "employee/detail";
+        return "employee/index";
     }
 
     @GetMapping("/")
     public String findAllEmployees(Pageable pageable, Model model) {
         Page<EmployeeDTO> employees = employeeService.findAllEmployee(pageable);
         model.addAttribute("employees", employees);
-        return "employee/detail";
+        return "employee/index";
     }
 
     @GetMapping("/add")
@@ -49,7 +51,10 @@ public class EmployController {
     }
 
     @PostMapping("/add")
-    public String doAdd(@ModelAttribute("employee") EmployeeDTO employeeDTO) {
+    public String doAdd(@ModelAttribute("employee") @Valid EmployeeDTO employeeDTO, BindingResult bindingResult) throws Exception {
+        if (bindingResult.hasErrors()) {
+            return "employee/add";
+        }
         employeeService.save(employeeDTO);
         return "redirect:/employees/";
     }
@@ -70,7 +75,11 @@ public class EmployController {
     }
 
     @PostMapping("/edit/{id}")
-    public String doEdit(@PathVariable Long id, @ModelAttribute("employee") EmployeeDTO employeeDTO) {
+    public String doEdit(@PathVariable Long id, @ModelAttribute("employee") @Valid EmployeeDTO employeeDTO,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "employee/edit";
+        }
         employeeDTO.setId(id);
         employeeService.save(employeeDTO);
         return "redirect:/employees/";

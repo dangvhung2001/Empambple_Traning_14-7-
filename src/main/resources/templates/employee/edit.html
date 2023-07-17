@@ -5,11 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<div th:insert="~{css.html}"></div>
+<header th:insert="layout/navba :: navba"></header>
 <h1>Edit Employee</h1>
 <form method="post" th:object="${employee}" th:action="@{/employees/edit/{id}(id=${employee.id})}">
     <input type="hidden" th:field="*{id}"/>
-    <label>Name: <input type="text" th:field="*{name}"/></label><br/>
-    <label>Email: <input type="email" th:field="*{email}"/></label><br/>
+    <label>Name: <input type="text" th:field="*{name}"/></label>
+    <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <br/>
+    <label>Email: <input type="email" th:field="*{email}"/></label>
+    <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    <br/>
     <label>Department:</label>
     <select th:field="*{departmentId}">
         <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
@@ -20,5 +26,6 @@
 <div>
     <a th:href="@{/employees/}">Back to List</a>
 </div>
+<footer th:insert="layout/footer :: footer"></footer>
 </body>
 </html>

@@ -5,6 +5,8 @@
     <title>User List</title>
 </head>
 <body>
+<div th:insert="~{css.html}"></div>
+<header th:insert="layout/navba :: navba"></header>
 <section th:fragment="departmentListContent()">
 <h1>Department List</h1>
 <table style="border: solid black">
@@ -28,5 +30,6 @@
 </table>
 <a th:href="@{/departments/create}">Create New Department</a>
 </section>
+<footer th:insert="layout/footer :: footer"></footer>
 </body>
 </html>

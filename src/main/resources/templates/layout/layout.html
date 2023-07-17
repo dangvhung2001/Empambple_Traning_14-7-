@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../../static/css.css">
+
 </head>
 <body>
-<div th:fragment="layout">
+<div th:insert="~{css.html}"></div>
+<!--<div th:replace="navba :: navba"></div>-->
+<div class="container">
+<div layout:fragment="content">
   <h1>Welcome to our website!</h1>
-
-  <section id="departmentContent">
-    <div th:insert="listDepartment.html :: departmentListContent"></div>
-  </section>
-  <section id="employeeContent"></section>
 </div>
+</div>
+<!--<div th:replace="footer :: footer"></div>-->
 </body>
 </html>

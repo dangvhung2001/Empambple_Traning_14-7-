@@ -1,12 +1,14 @@
 package com.example.thymleaf_trainingday5.service.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 public class EmployeeDTO {
     private Long id;
-
+    @NotEmpty(message = "Thiếu name")
     private String name;
-
+    @Email(message = "Email không hợp lệ")
     private String email;
 
     private Long departmentId;

@@ -2,6 +2,9 @@ package com.example.thymleaf_trainingday5.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,9 +21,11 @@ public class Employee implements Serializable {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Thiếu name")
     private String name;
 
     @Column(name = "email")
+    @Email(message = "Email không hợp lệ")
     private String email;
 
     @Column(name = "department_id")

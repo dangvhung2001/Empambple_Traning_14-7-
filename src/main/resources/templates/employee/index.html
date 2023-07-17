@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="employeeContent">
+<div th:insert="~{css.html}"></div>
+<div layout:fragment="content">
     <h1>Employee List</h1>
-    <div>
-        <form method="get" th:action="@{/employees/show}">
-            <input type="text" name="textSearch" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
-    </div>
     <table style="border: solid black">
         <tr>
             <th>ID</th>
