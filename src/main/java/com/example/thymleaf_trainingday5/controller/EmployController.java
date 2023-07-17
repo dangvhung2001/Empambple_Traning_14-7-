@@ -25,7 +25,7 @@ public class EmployController {
     }
     @GetMapping("/index")
     public String index() {
-        return "index";
+        return "employee/index";
     }
 
     @GetMapping("/show")

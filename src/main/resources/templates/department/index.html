@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>User List</title>
 </head>
 <body>
-<div th:insert="~{css.html}"></div>
-<header th:insert="layout/navba :: navba"></header>
-<section th:fragment="departmentListContent()">
-<h1>Department List</h1>
-<table style="border: solid black">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="department : ${departments}">
-
-        <td th:text="${department.id}" ></td>
-        <td th:text="${department.name}"></td>
-        <td th:text="${department.description}"></td>
-        <td>
-            <a th:href="@{/departments/edit/{id}(id=${department.id})}">Edit</a>
-            <a th:href="@{/departments/delete/{id}(id=${department.id})}">Delete</a>
-        </td>
-
-    </tr>
-</table>
-<a th:href="@{/departments/create}">Create New Department</a>
-</section>
-<footer th:insert="layout/footer :: footer"></footer>
+<div layout:fragment="content">
+    <section th:fragment="departmentListContent()">
+        <h1>Department List</h1>
+        <table style="border: solid black">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="department : ${departments}">
+                <td th:text="${department.id}"></td>
+                <td th:text="${department.name}"></td>
+                <td th:text="${department.description}"></td>
+                <td>
+                    <a th:href="@{/departments/edit/{id}(id=${department.id})}">Edit</a>
+                    <a th:href="@{/departments/delete/{id}(id=${department.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <a th:href="@{/departments/create}">Create New Department</a>
+    </section>
+</div>
 </body>
 </html>

@@ -1,12 +1,63 @@
-<div th:insert="~{css.html}"></div>
-</head>
+<style>
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+
+    header img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .search-bar input[type="text"] {
+        border: none;
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        border: none;
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    .button-container {
+        display: flex;
+    }
+
+    .button-container button {
+        margin-left: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+    }
+</style>
 <header th:fragment="navba">
     <div>
-        <a th:href="@{/employees/index}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="Logo"></a>
+        <a th:href="@{/employees/index}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
+                                              alt="Logo"></a>
     </div>
     <div class="button-container">
         <a th:href="@{/departments/}">
-            <button >Department</button>
+            <button>Department</button>
         </a>
         <a th:href="@{/employees/}">
             <button>Employee</button>

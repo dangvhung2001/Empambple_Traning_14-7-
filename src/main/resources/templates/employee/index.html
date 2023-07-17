@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<div th:insert="~{css.html}"></div>
 <div layout:fragment="content">
     <h1>Employee List</h1>
     <table style="border: solid black">
@@ -28,7 +27,6 @@
             <td><a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a></td>
         </tr>
     </table>
-
     <div>
         <a th:href="@{/employees/add}">Add New Employee</a>
     </div>

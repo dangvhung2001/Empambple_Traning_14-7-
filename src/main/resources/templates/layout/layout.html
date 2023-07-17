@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/css.css">
-
 </head>
 <body>
-<div th:insert="~{css.html}"></div>
-<!--<div th:replace="navba :: navba"></div>-->
+<div th:insert="~{layout/navba.html}"></div>
 <div class="container">
-<div layout:fragment="content">
-  <h1>Welcome to our website!</h1>
+    <div layout:fragment="content">
+        <h1>Welcome to our website!</h1>
+    </div>
 </div>
-</div>
-<!--<div th:replace="footer :: footer"></div>-->
+<div th:insert="~{layout/footer.html}"></div>
 </body>
 </html>

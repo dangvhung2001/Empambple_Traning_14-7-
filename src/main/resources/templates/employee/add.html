@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,8 +10,7 @@
     </style>
 </head>
 <body>
-<div th:insert="~{css.html}"></div>
-<header th:insert="layout/navba :: navba"></header>
+<div layout:fragment="content">
 <h1>Create Employee</h1>
 <form method="post" th:object="${employee}" th:action="@{/employees/add}">
     <label>Name: <input type="text" th:field="*{name}"/></label>
@@ -30,7 +29,6 @@
 <div>
     <a th:href="@{/employees/}">Back to List</a>
 </div>
-</form>
-<footer th:insert="layout/footer :: footer"></footer>
+</form></div>
 </body>
 </html>
