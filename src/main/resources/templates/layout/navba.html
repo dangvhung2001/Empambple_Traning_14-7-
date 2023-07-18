@@ -60,11 +60,11 @@
         <a th:href="@{/departments/}">
             <button>Department</button>
         </a>
-        <a th:href="@{/employees/}">
+        <a th:href="@{/employees/index}">
             <button>Employee</button>
         </a>
     </div>
-    <form class="search-bar" method="get" th:action="@{/employees/show}">
+    <form class="search-bar" method="get" th:action="@{/employees/homePage}">
         <input type="text" name="textSearch" placeholder="Search...">
         <button type="submit">Search</button>
     </form>

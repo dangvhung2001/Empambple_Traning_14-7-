@@ -2,6 +2,7 @@ package com.example.thymleaf_trainingday5.service.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class EmployeeDTO {
@@ -12,10 +13,19 @@ public class EmployeeDTO {
     private String email;
 
     private Long departmentId;
-
+    @Size(max = 9,min = 7)
+    private String password;
     private String departmentName;
 
     private Set<String> roles;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

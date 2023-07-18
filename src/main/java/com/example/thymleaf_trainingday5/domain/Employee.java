@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +28,9 @@ public class Employee implements Serializable {
     @Column(name = "email")
     @Email(message = "Email không hợp lệ")
     private String email;
+    @Column(name = "password")
+    @Size(max = 9,min = 7)
+    private String password;
 
     @Column(name = "department_id")
     private Long departmentId;
@@ -48,6 +52,14 @@ public class Employee implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {

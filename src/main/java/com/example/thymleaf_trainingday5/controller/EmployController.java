@@ -23,20 +23,20 @@ public class EmployController {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
     }
-    @GetMapping("index")
-    public String index() {
+    @GetMapping("homePage")
+    public String homePage() {
         return "index";
     }
 
-    @GetMapping("/")
-    public String searchEmployees(@RequestParam(required = false) String textSearch, Pageable pageable, Model model) {
+    @GetMapping("/show")
+    public String index(@RequestParam(required = false) String textSearch, Pageable pageable, Model model) {
         Page<EmployeeDTO> employees = employeeService.findAll(textSearch, pageable);
         model.addAttribute("employees", employees);
         return "employee/index";
     }
 
-    @GetMapping("/")
-    public String findAllEmployees(Pageable pageable, Model model) {
+    @GetMapping("/index")
+    public String index(Pageable pageable, Model model) {
         Page<EmployeeDTO> employees = employeeService.findAllEmployee(pageable);
         model.addAttribute("employees", employees);
         return "employee/index";
@@ -66,7 +66,7 @@ public class EmployController {
         if (employee.isPresent()) {
             EmployeeDTO employeeDTO = employee.get();
             model.addAttribute("employee", employeeDTO);
-            List<DepartmentDTO> departments = departmentService.getAll();
+            List<DepartmentDTO>departments = departmentService.getAll();
             model.addAttribute("departments", departments);
             return "employee/edit";
         } else {
