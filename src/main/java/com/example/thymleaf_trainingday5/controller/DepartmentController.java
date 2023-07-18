@@ -30,11 +30,13 @@ public class DepartmentController {
         model.addAttribute("departments", departments);
         return "department/index";
     }
+
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("department", new DepartmentDTO());
         return "department/add";
     }
+
     @PostMapping("/createDepartment")
     public String createDepartment(@ModelAttribute @Valid DepartmentDTO departmentDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -43,6 +45,7 @@ public class DepartmentController {
         departmentService.save(departmentDTO);
         return "redirect:/departments/";
     }
+
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         DepartmentDTO department = departmentService.findOne(id).get();
@@ -53,7 +56,8 @@ public class DepartmentController {
     @PostMapping("/edit/{id}")
     public String updateDepartment(@PathVariable Long id, @ModelAttribute DepartmentDTO departmentDTO) {
         if (!departmentRepository.existsById(id)) {
-            System.out.println("erro");;
+            System.out.println("erro");
+            ;
         }
         departmentService.save(departmentDTO);
         return "redirect:/departments/";

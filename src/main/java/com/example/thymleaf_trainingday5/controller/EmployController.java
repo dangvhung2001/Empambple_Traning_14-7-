@@ -1,5 +1,7 @@
 package com.example.thymleaf_trainingday5.controller;
 
+import com.example.thymleaf_trainingday5.domain.Role;
+import com.example.thymleaf_trainingday5.repository.RoleRepository;
 import com.example.thymleaf_trainingday5.service.DepartmentService;
 import com.example.thymleaf_trainingday5.service.EmployeeService;
 import com.example.thymleaf_trainingday5.service.dto.DepartmentDTO;
@@ -18,11 +20,14 @@ import java.util.*;
 public class EmployController {
     private final EmployeeService employeeService;
     private final DepartmentService departmentService;
+    private final RoleRepository roleRepository;
 
-    public EmployController(EmployeeService employeeService, DepartmentService departmentService) {
+    public EmployController(EmployeeService employeeService, DepartmentService departmentService, RoleRepository roleRepository) {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
+        this.roleRepository = roleRepository;
     }
+
     @GetMapping("homePage")
     public String homePage() {
         return "index";
@@ -45,7 +50,9 @@ public class EmployController {
     @GetMapping("/add")
     public String showAdd(Model model) {
         model.addAttribute("employee", new EmployeeDTO());
+        List<Role> roles = roleRepository.findAll();
         List<DepartmentDTO> departments = departmentService.getAll();
+        model.addAttribute("roles", roles);
         model.addAttribute("departments", departments);
         return "employee/add";
     }
@@ -56,7 +63,7 @@ public class EmployController {
             return "employee/add";
         }
         employeeService.save(employeeDTO);
-        return "redirect:/employees/";
+        return "redirect:/employees/index";
     }
 
     @GetMapping("/edit/{id}")
@@ -65,24 +72,26 @@ public class EmployController {
         Optional<EmployeeDTO> employee = employeeService.findOne(id);
         if (employee.isPresent()) {
             EmployeeDTO employeeDTO = employee.get();
+            List<DepartmentDTO> departments = departmentService.getAll();
+            List<Role> roles = roleRepository.findAll();
+            model.addAttribute("roles", roles);
             model.addAttribute("employee", employeeDTO);
-            List<DepartmentDTO>departments = departmentService.getAll();
             model.addAttribute("departments", departments);
             return "employee/edit";
         } else {
-            return "redirect:/employees/";
+            return "redirect:/employees/index";
         }
     }
 
     @PostMapping("/edit/{id}")
     public String doEdit(@PathVariable Long id, @ModelAttribute("employee") @Valid EmployeeDTO employeeDTO,
                          BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "employee/edit";
         }
         employeeDTO.setId(id);
         employeeService.save(employeeDTO);
-        return "redirect:/employees/";
+        return "redirect:/employees/index";
     }
 
     @GetMapping("/delete/{id}")

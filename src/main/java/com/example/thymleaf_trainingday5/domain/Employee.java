@@ -29,7 +29,7 @@ public class Employee implements Serializable {
     @Email(message = "Email không hợp lệ")
     private String email;
     @Column(name = "password")
-    @Size(max = 9,min = 7)
+    @Size(max = 9, min = 7)
     private String password;
 
     @Column(name = "department_id")

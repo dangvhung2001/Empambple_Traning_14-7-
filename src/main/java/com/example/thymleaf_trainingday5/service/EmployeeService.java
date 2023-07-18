@@ -15,5 +15,6 @@ public interface EmployeeService {
     Optional<EmployeeDTO> findOne(Long id);
 
     void delete(Long id);
+
     Page<EmployeeDTO> findAllEmployee(Pageable pageable);
 }
