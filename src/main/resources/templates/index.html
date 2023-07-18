@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-
+    <title>Home page</title>
 </head>
 <body>
-<div th:insert="~{css.html}"></div>
-<header th:insert="layout/navba :: navba"></header>
-<div class="content" th:insert="layout/layout :: layout"></div>
-<footer th:insert="layout/footer :: footer"></footer>
+<div layout:fragment="content">
+<h1>My home page</h1>
+</div>
 </body>
 </html>
