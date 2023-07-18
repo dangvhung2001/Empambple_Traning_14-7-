@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">My website</title>
 </head>
 <body>
 <div th:insert="~{layout/navba.html}"></div>

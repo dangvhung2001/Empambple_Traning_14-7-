@@ -23,12 +23,8 @@ public class EmployController {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
     }
-    @GetMapping("/index")
-    public String index() {
-        return "employee/index";
-    }
 
-    @GetMapping("/show")
+    @GetMapping("/index")
     public String searchEmployees(@RequestParam(required = false) String textSearch, Pageable pageable, Model model) {
         Page<EmployeeDTO> employees = employeeService.findAll(textSearch, pageable);
         model.addAttribute("employees", employees);
