@@ -28,7 +28,7 @@ public class EmployController {
         return "index";
     }
 
-    @GetMapping("/show")
+    @GetMapping("/")
     public String searchEmployees(@RequestParam(required = false) String textSearch, Pageable pageable, Model model) {
         Page<EmployeeDTO> employees = employeeService.findAll(textSearch, pageable);
         model.addAttribute("employees", employees);
