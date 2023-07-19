@@ -16,11 +16,11 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         if (dto == null) {
             return null;
         }
-
         Employee employee = new Employee();
         employee.setId(dto.getId());
         employee.setName(dto.getName());
         employee.setEmail(dto.getEmail());
+        employee.setPassword(dto.getPassword());
         employee.setDepartmentId(dto.getDepartmentId());
         return employee;
     }
@@ -35,6 +35,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         employeeDTO.setId(entity.getId());
         employeeDTO.setName(entity.getName());
         employeeDTO.setEmail(entity.getEmail());
+        employeeDTO.setPassword(entity.getPassword());
         employeeDTO.setDepartmentId(entity.getDepartmentId());
 
         Department department = entity.getDepartment();

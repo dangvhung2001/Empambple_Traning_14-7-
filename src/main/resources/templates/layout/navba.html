@@ -63,6 +63,14 @@
         <a th:href="@{/employees/index}">
             <button>Employee</button>
         </a>
+        <span >
+            <span style="color: white; margin-left: 10px;" th:text="${username}"></span>
+        </span>
+        <span >
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </span>
     </div>
     <form class="search-bar" method="get" th:action="@{/employees/homePage}">
         <input type="text" name="textSearch" placeholder="Search...">

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,7 +45,16 @@ public class Employee implements Serializable {
             name = "dtb_employee_role",
             joinColumns = {@JoinColumn(name = "employee_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
+
     private Set<Role> roles = new HashSet<>();
+
+
+    public Employee() {
+
+    }
+
+    public <T> Employee(Long id, String name, String email, String encode, List<T> asList) {
+    }
 
     public Long getId() {
         return id;

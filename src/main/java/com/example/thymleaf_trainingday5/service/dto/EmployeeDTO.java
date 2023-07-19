@@ -14,6 +14,7 @@ public class EmployeeDTO {
 
     private Long departmentId;
     @Size(max = 9,min = 7)
+    @NotEmpty(message = "Please enter valid password.")
     private String password;
     private String departmentName;
 

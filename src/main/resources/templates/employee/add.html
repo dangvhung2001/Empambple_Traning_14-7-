@@ -13,7 +13,7 @@
 <div layout:fragment="content">
 <h1>Create Employee</h1>
 <form method="post" th:object="${employee}" th:action="@{/employees/add}">
-    <label>Name: <input type="text" th:field="*{name}"/></label>
+    <label >Name: <input type="text" th:field="*{name}"/></label>
     <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
     <br/>
     <label>Email: <input type="email" th:field="*{email}"/></label>

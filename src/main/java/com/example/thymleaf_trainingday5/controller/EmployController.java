@@ -7,6 +7,7 @@ import com.example.thymleaf_trainingday5.service.EmployeeService;
 import com.example.thymleaf_trainingday5.service.dto.DepartmentDTO;
 import com.example.thymleaf_trainingday5.service.dto.EmployeeDTO;
 import org.springframework.data.domain.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,9 +42,11 @@ public class EmployController {
     }
 
     @GetMapping("/index")
-    public String index(Pageable pageable, Model model) {
+    public String index(Pageable pageable, Model model, Authentication authentication) {
+        String username = authentication.getName();
         Page<EmployeeDTO> employees = employeeService.findAllEmployee(pageable);
         model.addAttribute("employees", employees);
+        model.addAttribute("username", username);
         return "employee/index";
     }
 
