@@ -3,6 +3,7 @@ package com.example.thymleaf_trainingday5.service.impl;
 import com.example.thymleaf_trainingday5.domain.*;
 import com.example.thymleaf_trainingday5.repository.*;
 import com.example.thymleaf_trainingday5.service.EmployeeService;
+import com.example.thymleaf_trainingday5.service.dto.DepartmentDTO;
 import com.example.thymleaf_trainingday5.service.dto.EmployeeDTO;
 import com.example.thymleaf_trainingday5.service.mapper.EmployeeMapper;
 import com.example.thymleaf_trainingday5.util.TbConstants;
@@ -42,6 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         employee.setRoles(roles);
+        String encodedPassword = passwordEncoder.encode(employeeDTO.getPassword());
+        employee.setPassword(encodedPassword);
         employee = employeeRepository.save(employee);
         return employeeMapper.toDto(employee);
     }
@@ -86,5 +89,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findUserByEmail(String email) {
         return employeeRepository.findEmployeeByEmail(email);
+    }
+
+    @Override
+    public List<EmployeeDTO> getAll() {
+        List<Employee> employees = employeeRepository.findAll();
+        return employeeMapper.toDto(employees);
     }
 }

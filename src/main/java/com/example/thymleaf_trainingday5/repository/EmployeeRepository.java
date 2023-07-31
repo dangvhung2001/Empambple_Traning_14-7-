@@ -1,6 +1,7 @@
 package com.example.thymleaf_trainingday5.repository;
 
 import com.example.thymleaf_trainingday5.domain.Employee;
+import com.example.thymleaf_trainingday5.service.dto.DepartmentDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;

@@ -1,9 +1,11 @@
 package com.example.thymleaf_trainingday5.service;
 
 import com.example.thymleaf_trainingday5.domain.Employee;
+import com.example.thymleaf_trainingday5.service.dto.DepartmentDTO;
 import com.example.thymleaf_trainingday5.service.dto.EmployeeDTO;
 import org.springframework.data.domain.*;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {
@@ -21,5 +23,5 @@ public interface EmployeeService {
 
     void saveEmployee(EmployeeDTO employeeDTO);
     Employee findUserByEmail(String email);
-
+    List<EmployeeDTO> getAll();
 }

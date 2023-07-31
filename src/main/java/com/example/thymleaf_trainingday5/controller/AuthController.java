@@ -18,21 +18,23 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
+@RequestMapping("/login")
 public class AuthController {
     private final EmployeeService employeeService;
     private final RoleRepository roleRepository;
+
     public AuthController(EmployeeService employeeService, RoleRepository roleRepository) {
         this.employeeService = employeeService;
         this.roleRepository = roleRepository;
     }
-    @RequestMapping("/login")
+
+    @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
+
     @GetMapping("/registration")
     public String registrationForm(Model model) {
         EmployeeDTO employeeDTO = new EmployeeDTO();
@@ -45,11 +47,6 @@ public class AuthController {
             @Valid @ModelAttribute("employee") EmployeeDTO employeeDTO,
             BindingResult result,
             Model model) {
-        Employee existingUser = employeeService.findUserByEmail(employeeDTO.getEmail());
-        if (existingUser != null)
-            result.rejectValue("email", null,
-                    "email already registered !!!");
-
         if (result.hasErrors()) {
             model.addAttribute("employees", employeeDTO);
             return "/registration";

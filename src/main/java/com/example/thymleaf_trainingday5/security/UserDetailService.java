@@ -2,8 +2,6 @@ package com.example.thymleaf_trainingday5.security;
 
 import com.example.thymleaf_trainingday5.domain.Employee;
 import com.example.thymleaf_trainingday5.repository.EmployeeRepository;
-import com.example.thymleaf_trainingday5.service.EmployeeService;
-import com.example.thymleaf_trainingday5.service.dto.EmployeeDTO;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,8 +26,9 @@ public class UserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
         Employee employee = employeeRepository.findEmployeeByEmail(usernameOrEmail);
         if (employee != null) {
+            System.out.println(new BCryptPasswordEncoder().encode(employee.getPassword()));
             return new org.springframework.security.core.userdetails.User(employee.getEmail()
-                    , new BCryptPasswordEncoder().encode(employee.getPassword()),
+                    , employee.getPassword(),
                     employee.getRoles().stream()
                             .map((role) -> new SimpleGrantedAuthority(role.getName()))
                             .collect(Collectors.toList()));
